@@ -1,22 +1,7 @@
-const faker = require('faker');
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/faker', { useNewUrlParser: true });
-
-const userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  email: String,
-  age: Number,
-  username: String,
-  shortBio: String,
-  streetAddress: String,
-  zip: String,
-  city: String,
-  country: String,
-  phone: String
-})
-
-const User = mongoose.model('User', userSchema);
+const faker = require("faker");
+const User = require("./schema");
+const mongoose = require("mongoose");
+const db = mongoose.connection;
 
 class Person {
   constructor() {
@@ -34,9 +19,34 @@ class Person {
   }
 }
 
+db.dropCollection("users");
 for (let i = 0; i < 100; i++) {
   const myPerson = new Person();
-  const { firstName, lastName, email, age, username, shortBio, streetAddress, zip, city, country, phone } = myPerson;
-  const newPerson = new User({ firstName, lastName, email, age, username, shortBio, streetAddress, zip, city, country, phone });
-  newPerson.save().then(() => console.log('saved'));
+  const {
+    firstName,
+    lastName,
+    email,
+    age,
+    username,
+    shortBio,
+    streetAddress,
+    zip,
+    city,
+    country,
+    phone
+  } = myPerson;
+  const newPerson = new User({
+    firstName,
+    lastName,
+    email,
+    age,
+    username,
+    shortBio,
+    streetAddress,
+    zip,
+    city,
+    country,
+    phone
+  });
+  newPerson.save().then(() => console.log("saved"));
 }
