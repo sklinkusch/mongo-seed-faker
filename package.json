@@ -10,6 +10,7 @@
   "author": "Stefan Klinkusch <stefan.klinkusch@googlemail.com> (https://sklinkusch.now.sh/)",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.17.1",
     "faker": "^4.1.0",
     "mongoose": "^5.6.8"
   }
