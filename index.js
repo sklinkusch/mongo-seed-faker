@@ -1,27 +1,8 @@
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/faker', { useNewUrlParser: true });
+const express = require('express');
+const app = express();
+const port = 3000;
+const userIDRoute = require('./router');
 
-const userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  email: String,
-  age: Number,
-  username: String,
-  shortBio: String,
-  streetAddress: String,
-  zip: String,
-  city: String,
-  country: String,
-  phone: String
-})
+app.use('/user', (req, res) => userIDRoute(req, res));
 
-const User = mongoose.model('User', userSchema);
-
-const id = process.argv[2];
-User.findById(id, (err, res) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(res);
-  }
-})
+app.listen(port, () => console.log(`App listening on port ${port}`))
