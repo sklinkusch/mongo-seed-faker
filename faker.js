@@ -12,6 +12,8 @@ class Person {
     this.username = faker.internet.userName();
     this.shortBio = faker.name.jobType();
     this.streetAddress = faker.address.streetAddress();
+    this.streetNumber = this.streetAddress.split(" ")[0];
+    this.streetName = this.streetAddress.split(" ").slice(1).join(" ");
     this.zip = faker.address.zipCode();
     this.city = faker.address.city();
     this.country = faker.address.country();
@@ -19,34 +21,40 @@ class Person {
   }
 }
 
-db.dropCollection("users");
-for (let i = 0; i < 100; i++) {
-  const myPerson = new Person();
-  const {
-    firstName,
-    lastName,
-    email,
-    age,
-    username,
-    shortBio,
-    streetAddress,
-    zip,
-    city,
-    country,
-    phone
-  } = myPerson;
-  const newPerson = new User({
-    firstName,
-    lastName,
-    email,
-    age,
-    username,
-    shortBio,
-    streetAddress,
-    zip,
-    city,
-    country,
-    phone
-  });
-  newPerson.save().then(() => console.log("saved"));
+exports.generateDB = () => {
+  db.dropCollection("users");
+  for (let i = 0; i < 100; i++) {
+    const myPerson = new Person();
+    const {
+      firstName,
+      lastName,
+      email,
+      age,
+      username,
+      shortBio,
+      streetNumber,
+      streetName,
+      zip,
+      city,
+      country,
+      phone
+    } = myPerson;
+    const newPerson = new User({
+      firstName,
+      lastName,
+      email,
+      age,
+      username,
+      shortBio,
+      address: {
+        streetNumber,
+        streetName,
+        zip,
+        city,
+        country
+      },
+      phone
+    });
+    newPerson.save().then(() => console.log("saved"));
+  }
 }

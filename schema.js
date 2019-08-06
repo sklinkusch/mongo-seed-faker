@@ -8,10 +8,13 @@ const userSchema = new mongoose.Schema({
   age: Number,
   username: String,
   shortBio: String,
-  streetAddress: String,
-  zip: String,
-  city: String,
-  country: String,
+  address: {
+    streetNumber: String,
+    streetName: String,
+    zip: String,
+    city: String,
+    country: String
+  },
   phone: String
 });
 
