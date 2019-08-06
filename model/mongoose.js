@@ -20,3 +20,9 @@ exports.usersRendered = async (req, res) => {
   const query = await User.find({}).exec();
   res.render('home', { query });
 }
+
+exports.usersID = async (req, res) => {
+  const { usersID } = req.params;
+  const user = await User.find({ id: usersID }).exec();
+  res.render('user', { user: user });
+}
