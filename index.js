@@ -7,7 +7,7 @@ const { allUsers } = require('./mongoose');
 
 generateDB();
 
-app.use('/', (req, res) => allUsers(req, res));
+app.use('/api', (req, res) => allUsers(req, res));
 app.use('/user', (req, res) => userIDRoute(req, res));
 
 app.listen(port, () => console.log(`App listening on port ${port}`))
