@@ -8,7 +8,7 @@ class Person {
     this.firstName = faker.name.firstName();
     this.lastName = faker.name.lastName();
     this.email = faker.internet.email();
-    this.age = Math.floor(100 * Math.random());
+    this.age = Math.floor(82 * Math.random() + 18);
     this.username = faker.internet.userName();
     this.shortBio = faker.name.jobType();
     this.streetAddress = faker.address.streetAddress();
