@@ -18,5 +18,5 @@ exports.allUsers = async (req, res) => {
 
 exports.usersRendered = async (req, res) => {
   const query = await User.find({}).exec();
-  res.render('home')
+  res.render('home', { query });
 }
