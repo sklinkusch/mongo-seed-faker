@@ -10,3 +10,8 @@ exports.getUserInfo = (req, res) => {
     }
   });
 };
+
+exports.allUsers = async (req, res) => {
+  const query = await User.find({}).exec();
+  res.json(query);
+}

@@ -23,7 +23,7 @@ class Person {
 
 exports.generateDB = () => {
   db.dropCollection("users");
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 10; i++) {
     const myPerson = new Person();
     const {
       firstName,
