@@ -1,4 +1,14 @@
 const User = require("./schema");
+const { generateDB } = require("./faker");
+
+exports.getNumberOfUsers = async () => {
+  const numberOfUsers = await User.countDocuments();
+  if (numberOfUsers > 0) {
+    console.log("Database contains data, skip generation of identities");
+  } else {
+    generateDB();
+  }
+}
 
 exports.getUserInfo = (req, res) => {
   const { id } = req.params;

@@ -4,10 +4,9 @@ const path = require('path');
 const app = express();
 const port = 3000;
 const userIDRoute = require('./model/router');
-const { generateDB } = require('./model/faker');
-const { allUsers, usersRendered, usersID } = require('./model/mongoose');
+const { allUsers, usersRendered, usersID, getNumberOfUsers } = require('./model/mongoose');
 
-generateDB();
+getNumberOfUsers();
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, './views'));
